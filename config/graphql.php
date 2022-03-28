@@ -90,6 +90,7 @@ return [
                 'category' => App\GraphQL\Queries\CategoryQuery::class,
                 'checkcustomer' => App\GraphQL\Queries\CheckCustomerQuery::class,
                 'blogs' => App\GraphQL\Queries\BlogQuery::class,
+                'customer' => App\GraphQL\Queries\CustomerQuery::class,
             ],
 
             'mutation' => [
@@ -120,6 +121,7 @@ return [
         'responseType' => App\GraphQL\Types\ResponseType::class,
         'blogType' => App\GraphQL\Types\BlogType::class,
         'blogInput' => App\GraphQL\Inputs\BlogInput::class,
+        'customerType' => App\GraphQL\Types\CustomerType::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request

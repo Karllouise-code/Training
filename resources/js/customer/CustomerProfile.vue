@@ -4,7 +4,12 @@
             <div class="starter-template text-left py-5 px-2 mt-3">
                 <h1>My Profile</h1>
             </div>
-            <form @submit.prevent="submitForm">
+
+            <div class="alert alert-warning" v-if="loaded">
+                <span class="spinner-border text-warning mr-3"></span>Please wait... loading your information...
+            </div>
+
+            <form @submit.prevent="submitForm" v-if="!loaded">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -53,7 +58,15 @@ export default {
             email_error: "",
             customer: [],
             selectedFile: null,
+            loaded: true,
         };
+    },
+    created() {
+        this.$query("customer").then((res) => {
+            console.log(res);
+            this.loaded = false;
+            this.blogs = res.data.data.blogs;
+        });
     },
 };
 </script>
