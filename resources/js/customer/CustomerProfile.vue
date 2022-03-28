@@ -1,3 +1,49 @@
 <template>
-    <div>My Profile</div>
+    <div>
+        <main class="container">
+            <div class="starter-template text-left py-5 px-2 mt-3">
+                <h1>My Profile</h1>
+            </div>
+            <form @submit.prevent="submitForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>First name</label>
+                            <input v-model="firstname" type="text" class="form-control" placeholder="Firstname" />
+                            <div class="text-danger">{{ firstname_error }}</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Last name</label>
+                            <input v-model="lastname" type="text" class="form-control" placeholder="Lastname" />
+                            <div class="text-danger">{{ lastname_error }}</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email address</label>
+                            <input v-model="email" type="text" class="form-control" placeholder="email" />
+                            <div class="text-danger">{{ email_error }}</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Image</label>
+                            <input type="file" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <button class="btn btn-sm btn-primary" type="submit">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {};
+    },
+};
+</script>
