@@ -21,7 +21,7 @@
 
                         <div class="form-group">
                             <label>Email address</label>
-                            <input v-model="email" type="text" class="form-control" placeholder="email" />
+                            <input v-model="email" type="text" class="form-control" placeholder="Email address" />
                             <div class="text-danger">{{ email_error }}</div>
                         </div>
 
@@ -43,7 +43,17 @@
 <script>
 export default {
     data() {
-        return {};
+        return {
+            firstname: "",
+            firstname_error: "",
+            lastname: "",
+            lastname_error: "",
+            email: "",
+            email_error: "",
+            email_error: "",
+            customer: [],
+            selectedFile: null,
+        };
     },
 };
 </script>
