@@ -6057,13 +6057,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this = this;
 
     this.$query("customer").then(function (res) {
-      console.log(res);
       _this.loaded = false;
       _this.customer = res.data.data.customer;
       _this.firstname = _this.customer.firstname;
       _this.lastname = _this.customer.lastname;
       _this.email = _this.customer.email;
     });
+  },
+  methods: {
+    onFileChanged: function onFileChanged(event) {
+      this.selectedFile = event.target.files[0];
+    }
   }
 });
 
@@ -59098,9 +59102,17 @@ var render = function () {
                     ]),
                   ]),
                   _vm._v(" "),
-                  _vm._m(1),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Image")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: { type: "file" },
+                      on: { change: _vm.onFileChanged },
+                    }),
+                  ]),
                   _vm._v(" "),
-                  _vm._m(2),
+                  _vm._m(1),
                 ]),
               ]),
             ]
@@ -59119,16 +59131,6 @@ var staticRenderFns = [
       { staticClass: "starter-template text-left py-5 px-2 mt-3" },
       [_c("h1", [_vm._v("My Profile")])]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", [_vm._v("Image")]),
-      _vm._v(" "),
-      _c("input", { staticClass: "form-control", attrs: { type: "file" } }),
-    ])
   },
   function () {
     var _vm = this

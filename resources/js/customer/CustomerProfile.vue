@@ -32,7 +32,7 @@
 
                         <div class="form-group">
                             <label>Image</label>
-                            <input type="file" class="form-control" />
+                            <input type="file" class="form-control" @change="onFileChanged" />
                         </div>
 
                         <div class="mb-3">
@@ -63,13 +63,17 @@ export default {
     },
     created() {
         this.$query("customer").then((res) => {
-            console.log(res);
             this.loaded = false;
             this.customer = res.data.data.customer;
             this.firstname = this.customer.firstname;
             this.lastname = this.customer.lastname;
             this.email = this.customer.email;
         });
+    },
+    methods: {
+        onFileChanged(event) {
+            this.selectedFile = event.target.files[0];
+        },
     },
 };
 </script>
