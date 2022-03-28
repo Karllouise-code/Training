@@ -67,7 +67,10 @@ let customerQueries = [
     'blogs',
     'saveblogs',
     'customer',
+    'updateProfile',
 ];
+
+let uploadQueries = ['updateProfile'];
 
 function getApiUrl(queryName) {
     let segment = '';
@@ -83,22 +86,52 @@ Vue.prototype.$query = function (queryName, queryVariables) {
         token = sessionStorage.getItem('api_token');
     }
 
-    let options = {
-        url: getApiUrl(queryName),
-        method: 'POST',
-        data: {
-            query: queries[queryName],
-        },
-    };
+    if (uploadQueries.some((q) => q === queryName)) {
+        var bodyFormData = new FormData();
 
-    if (queryVariables) {
-        options.data.variables = queryVariables;
-    }
+        bodyFormData.set(
+            'operations',
+            JSON.stringify({
+                // Mutation string
+                query: queries[queryName],
+                variables: queryVariables,
+            })
+        );
+        bodyFormData.set('operationName', null);
+        bodyFormData.set('map', JSON.stringify({ file: ['variables.file'] }));
+        bodyFormData.append('file', queryVariables.file);
 
-    if (token) {
-        options.headers = {
-            Authorization: `Bearer ${token}`,
+        let options = {
+            url: getApiUrl(queryName),
+            method: 'POST',
+            data: bodyFormData,
         };
+
+        if (token) {
+            options.headers = {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data',
+            };
+        }
+        return axios(options);
+    } else {
+        let options = {
+            url: getApiUrl(queryName),
+            method: 'POST',
+            data: {
+                query: queries[queryName],
+            },
+        };
+
+        if (queryVariables) {
+            options.data.variables = queryVariables;
+        }
+
+        if (token) {
+            options.headers = {
+                Authorization: `Bearer ${token}`,
+            };
+        }
+        return axios(options);
     }
-    return axios(options);
 };

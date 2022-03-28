@@ -6411,7 +6411,8 @@ var queries = (_queries = {
   checkcustomer: "query CheckCustomerQuery {\n        checkcustomer\n    }",
   savecategory: "mutation savecategory($name: String, $id: String) {\n        savecategory(name: $name, id: $id) {\n            error,\n            message\n        }\n    }"
 }, _defineProperty(_queries, "category", "query fetchSingleCategory($category_id: String, $delete_category_id: String) {\n        category(category_id: $category_id, delete_category_id: $delete_category_id) {\n            id,\n            name\n        }\n    }"), _defineProperty(_queries, "blogs", "query fetchSingleBlogs($blog_id: String, $delete_blog_id: String) {\n        blogs(blog_id: $blog_id, delete_blog_id: $delete_blog_id) {\n            id,\n            title,\n            description,\n            customer_id,\n            category_id,\n            category {\n                name\n            }\n        }\n    }"), _defineProperty(_queries, "saveblogs", "mutation saveblogs($blog: blogInput) {\n        saveblogs(blog: $blog) {\n            error,\n            message\n        }\n    }"), _defineProperty(_queries, "customer", "{customer{firstname,lastname, email}}"), _defineProperty(_queries, "updateProfile", "mutation updateProfile($file: Upload!, $customer: customerInput) {\n        updateProfile(file: $file, customer: $customer) {\n            error,\n            message\n        }\n    }"), _queries);
-var customerQueries = ['checkcustomer', 'category', 'savecategory', 'blogs', 'saveblogs', 'customer'];
+var customerQueries = ['checkcustomer', 'category', 'savecategory', 'blogs', 'saveblogs', 'customer', 'updateProfile'];
+var uploadQueries = ['updateProfile'];
 
 function getApiUrl(queryName) {
   var segment = '';
@@ -6434,25 +6435,55 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.$query = function (queryNa
     token = sessionStorage.getItem('api_token');
   }
 
-  var options = {
-    url: getApiUrl(queryName),
-    method: 'POST',
-    data: {
-      query: queries[queryName]
-    }
-  };
-
-  if (queryVariables) {
-    options.data.variables = queryVariables;
-  }
-
-  if (token) {
-    options.headers = {
-      Authorization: "Bearer ".concat(token)
+  if (uploadQueries.some(function (q) {
+    return q === queryName;
+  })) {
+    var bodyFormData = new FormData();
+    bodyFormData.set('operations', JSON.stringify({
+      // Mutation string
+      query: queries[queryName],
+      variables: queryVariables
+    }));
+    bodyFormData.set('operationName', null);
+    bodyFormData.set('map', JSON.stringify({
+      file: ['variables.file']
+    }));
+    bodyFormData.append('file', queryVariables.file);
+    var options = {
+      url: getApiUrl(queryName),
+      method: 'POST',
+      data: bodyFormData
     };
-  }
 
-  return axios__WEBPACK_IMPORTED_MODULE_0___default()(options);
+    if (token) {
+      options.headers = {
+        Authorization: "Bearer ".concat(token),
+        'Content-Type': 'multipart/form-data'
+      };
+    }
+
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()(options);
+  } else {
+    var _options = {
+      url: getApiUrl(queryName),
+      method: 'POST',
+      data: {
+        query: queries[queryName]
+      }
+    };
+
+    if (queryVariables) {
+      _options.data.variables = queryVariables;
+    }
+
+    if (token) {
+      _options.headers = {
+        Authorization: "Bearer ".concat(token)
+      };
+    }
+
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()(_options);
+  }
 };
 
 /***/ }),
