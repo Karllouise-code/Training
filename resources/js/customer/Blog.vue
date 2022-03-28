@@ -7,9 +7,7 @@
 
             <div class="row">
                 <div class="col mb-3">
-                    <router-link to="/customer/blog-category/add" class="btn btn-lg btn-warning"
-                        >Add new Blog</router-link
-                    >
+                    <router-link to="/customer/blogs/add" class="btn btn-lg btn-warning">Add new Blog</router-link>
                 </div>
             </div>
 
