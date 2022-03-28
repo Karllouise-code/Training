@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Rebing\GraphQL\Support\UploadType;
+
 return [
     'route' => [
         // The prefix for routes; do NOT use a leading slash!
@@ -96,6 +98,7 @@ return [
             'mutation' => [
                 'savecategory' => App\GraphQL\Mutations\SaveCategoryMutation::class,
                 'saveblogs' => App\GraphQL\Mutations\BlogMutation::class,
+                'updateProfile' => App\GraphQL\Mutations\UpdateProfileMutation::class,
             ],
 
             'types' => [],
@@ -116,6 +119,7 @@ return [
     // ]
     //
     'types' => [
+        'Upload' => UploadType::class,
         'customerInput' => App\GraphQL\Inputs\CustomerInput::class,
         'categoryType' => App\GraphQL\Types\CategoryType::class,
         'responseType' => App\GraphQL\Types\ResponseType::class,
