@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <label>Category</label>
                             <select v-model="selected_category">
-                                <option value="Select one"></option>
+                                <option value="">Select one</option>
                                 <option :value="category_data.id" v-for="category_data in category">
                                     {{ category_data.name }}
                                 </option>
@@ -28,12 +28,12 @@
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea v-model="description" type="text" class="form-control"></textarea>>
+                            <textarea v-model="description" type="text" class="form-control"></textarea>
                             <div class="text-danger">{{ description_error }}</div>
                         </div>
                         <div class="mb-3">
                             <button class="btn btn-sm btn-primary" type="submit">Save</button>
-                            <router-link to="/customer/blog-category" class="btn btn-sm btn-default">Back</router-link>
+                            <router-link to="/customer/blogs" class="btn btn-sm btn-default">Back</router-link>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@ export default {
             category_error: "",
             description_error: "",
             isSaving: false,
-            category: []
+            category: [],
         };
     },
     created() {
@@ -66,12 +66,12 @@ export default {
         submitForm() {
             this.isSaving = true;
             this.$query("saveblogs", {
-                blogs {
+                blogs: {
                     title: this.title,
                     category: this.selected_category,
                     description: this.description,
                     id: 0,
-                  }
+                },
             }).then((res) => {
                 this.isSaving = false;
                 if (res.data.errors) {
