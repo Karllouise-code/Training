@@ -93,14 +93,21 @@ export default {
                     if (response.error == false) {
                         //display success message
                         this.$swal("Success!", response.message, "success");
-                        this.name = "";
-                        this.name_error = "";
+                        this.clearFields();
                     } else {
                         //display error message
                         this.$swal("Error!", response.message, "error");
                     }
                 }
             });
+        },
+        clearFields() {
+            this.title = "";
+            this.selected_category = "";
+            this.description = "";
+            this.title_error = "";
+            this.category_error = "";
+            this.description_error = "";
         },
     },
 };

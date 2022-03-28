@@ -5541,14 +5541,21 @@ __webpack_require__.r(__webpack_exports__);
             //display success message
             _this2.$swal("Success!", response.message, "success");
 
-            _this2.name = "";
-            _this2.name_error = "";
+            _this2.clearFields();
           } else {
             //display error message
             _this2.$swal("Error!", response.message, "error");
           }
         }
       });
+    },
+    clearFields: function clearFields() {
+      this.title = "";
+      this.selected_category = "";
+      this.description = "";
+      this.title_error = "";
+      this.category_error = "";
+      this.description_error = "";
     }
   }
 });
