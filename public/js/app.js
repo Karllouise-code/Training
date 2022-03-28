@@ -6059,7 +6059,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$query("customer").then(function (res) {
       console.log(res);
       _this.loaded = false;
-      _this.blogs = res.data.data.blogs;
+      _this.customer = res.data.data.customer;
     });
   }
 });
@@ -6391,8 +6391,8 @@ var queries = (_queries = {
   category: "{category{id,name}}",
   checkcustomer: "query CheckCustomerQuery {\n        checkcustomer\n    }",
   savecategory: "mutation savecategory($name: String, $id: String) {\n        savecategory(name: $name, id: $id) {\n            error,\n            message\n        }\n    }"
-}, _defineProperty(_queries, "category", "query fetchSingleCategory($category_id: String, $delete_category_id: String) {\n        category(category_id: $category_id, delete_category_id: $delete_category_id) {\n            id,\n            name\n        }\n    }"), _defineProperty(_queries, "blogs", "query fetchSingleBlogs($blog_id: String, $delete_blog_id: String) {\n        blogs(blog_id: $blog_id, delete_blog_id: $delete_blog_id) {\n            id,\n            title,\n            description,\n            customer_id,\n            category_id,\n            category {\n                name\n            }\n        }\n    }"), _defineProperty(_queries, "saveblogs", "mutation saveblogs($blog: blogInput) {\n        saveblogs(blog: $blog) {\n            error,\n            message\n        }\n    }"), _queries);
-var customerQueries = ['checkcustomer', 'category', 'savecategory', 'blogs', 'saveblogs'];
+}, _defineProperty(_queries, "category", "query fetchSingleCategory($category_id: String, $delete_category_id: String) {\n        category(category_id: $category_id, delete_category_id: $delete_category_id) {\n            id,\n            name\n        }\n    }"), _defineProperty(_queries, "blogs", "query fetchSingleBlogs($blog_id: String, $delete_blog_id: String) {\n        blogs(blog_id: $blog_id, delete_blog_id: $delete_blog_id) {\n            id,\n            title,\n            description,\n            customer_id,\n            category_id,\n            category {\n                name\n            }\n        }\n    }"), _defineProperty(_queries, "saveblogs", "mutation saveblogs($blog: blogInput) {\n        saveblogs(blog: $blog) {\n            error,\n            message\n        }\n    }"), _defineProperty(_queries, "customer", "{customer{firstname,lastname, email}}"), _queries);
+var customerQueries = ['checkcustomer', 'category', 'savecategory', 'blogs', 'saveblogs', 'customer'];
 
 function getApiUrl(queryName) {
   var segment = '';

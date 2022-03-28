@@ -31,7 +31,7 @@ class CustomerQuery extends Query
     {
         $customer_model = new Customer();
         $customer = $customer_model->GetCustomerID();
-
+        Log::debug(print_r($customer, true));
         return $customer;
     }
 }

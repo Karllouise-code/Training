@@ -65,7 +65,7 @@ export default {
         this.$query("customer").then((res) => {
             console.log(res);
             this.loaded = false;
-            this.blogs = res.data.data.blogs;
+            this.customer = res.data.data.customer;
         });
     },
 };

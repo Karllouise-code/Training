@@ -49,6 +49,8 @@ let queries = {
             message
         }
     }`,
+
+    customer: `{customer{firstname,lastname, email}}`,
 };
 
 let customerQueries = [
@@ -57,6 +59,7 @@ let customerQueries = [
     'savecategory',
     'blogs',
     'saveblogs',
+    'customer',
 ];
 
 function getApiUrl(queryName) {
