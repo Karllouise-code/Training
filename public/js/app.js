@@ -57690,7 +57690,7 @@ var render = function () {
                     ? _c("tr", [
                         _c("td", [_vm._v(_vm._s(blog_data.title))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v("category name")]),
+                        _c("td", [_vm._v(_vm._s(blog_data.category.name))]),
                         _vm._v(" "),
                         _c(
                           "td",
