@@ -41,6 +41,13 @@ class BlogQuery extends Query
             return $blog;
         }
 
+        if (isset($args['delete_blog_id'])) {
+            $blog = $blog_model->DeleteBlogById(
+                $args['delete_blog_id'],
+                $customer->id
+            );
+        }
+
         $blog = $blog_model->DisplayBlogByCustomerID($customer->id);
         return $blog;
     }

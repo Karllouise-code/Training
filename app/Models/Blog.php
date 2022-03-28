@@ -18,6 +18,16 @@ class Blog extends Eloquent
             ->get();
     }
 
+    public function DeleteBlogById($blog_id, $customer_id)
+    {
+        $blog = self::where('id', '=', $blog_id)
+            ->where('customer_id', '=', $customer_id)
+            ->first();
+        if ($blog) {
+            $blog->delete();
+        }
+    }
+
     public function category()
     {
         return $this->belongsTo(BlogCategory::class, 'category_id', 'id');
