@@ -5932,6 +5932,7 @@ __webpack_require__.r(__webpack_exports__);
       var blog_data = res.data.data.blogs[0];
       _this.title = blog_data.title;
       _this.description = blog_data.description;
+      _this.selected_category = blog_data.category_id;
     });
   },
   methods: {
@@ -5947,7 +5948,6 @@ __webpack_require__.r(__webpack_exports__);
           id: this.$route.params.id
         }
       }).then(function (res) {
-        console.log(res);
         _this2.isSaving = false;
 
         if (res.data.errors) {

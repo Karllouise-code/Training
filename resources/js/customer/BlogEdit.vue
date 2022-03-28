@@ -70,6 +70,7 @@ export default {
             let blog_data = res.data.data.blogs[0];
             this.title = blog_data.title;
             this.description = blog_data.description;
+            this.selected_category = blog_data.category_id;
         });
     },
     methods: {
@@ -83,7 +84,6 @@ export default {
                     id: this.$route.params.id,
                 },
             }).then((res) => {
-                console.log(res);
                 this.isSaving = false;
                 if (res.data.errors) {
                     let errors = Object.values(res.data.errors[0].extensions.validation).flat();
