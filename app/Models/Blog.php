@@ -13,7 +13,7 @@ class Blog extends Eloquent
 
     public function category()
     {
-        return $this->belongsTo(BlogCategory::class, 'id', 'category_id');
+        return $this->belongsTo(BlogCategory::class, 'category_id', 'id');
     }
 
     public function SaveBlog($blog, $customer_id)
