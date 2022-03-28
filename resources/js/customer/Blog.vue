@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="blog_data in blogs" v-if="blog.length > 0">
+                    <tr v-for="blog_data in blogs" v-if="blogs.length > 0">
                         <td>{{ blog_data.title }}</td>
                         <td>category name</td>
                         <td>

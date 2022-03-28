@@ -18,7 +18,7 @@ class Blog extends Eloquent
 
     public function SaveBlog($blog, $customer_id)
     {
-        if ($blog['id'] == 0) {
+        if ($blog['id'] == '0') {
             $blogRec = new self();
             $blogRec->customer_id = $customer_id;
         } else {

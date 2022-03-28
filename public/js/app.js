@@ -57686,7 +57686,7 @@ var render = function () {
               "tbody",
               [
                 _vm._l(_vm.blogs, function (blog_data) {
-                  return _vm.blog.length > 0
+                  return _vm.blogs.length > 0
                     ? _c("tr", [
                         _c("td", [_vm._v(_vm._s(blog_data.title))]),
                         _vm._v(" "),
