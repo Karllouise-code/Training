@@ -53,7 +53,6 @@ export default {
     },
     created() {
         this.$query("blogs").then((res) => {
-            console.log(res);
             this.loaded = false;
             this.blogs = res.data.data.blogs;
         });

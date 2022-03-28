@@ -5397,7 +5397,6 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.$query("blogs").then(function (res) {
-      console.log(res);
       _this.loaded = false;
       _this.blogs = res.data.data.blogs;
     });

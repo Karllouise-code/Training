@@ -33,6 +33,13 @@ class BlogQuery extends Query
         $blog_model = new Blog();
         $customer_model = new Customer();
         $customer = $customer_model->GetCustomerID();
+        if (isset($args['blog_id'])) {
+            $blog = $blog_model->DisplayBlogByID(
+                $args['blog_id'],
+                $customer->id
+            );
+            return $blog;
+        }
 
         $blog = $blog_model->DisplayBlogByCustomerID($customer->id);
         return $blog;

@@ -11,6 +11,13 @@ class Blog extends Eloquent
         return self::where('customer_id', '=', $customer_id)->get();
     }
 
+    public function DisplayBlogByID($blog_id, $customer_id)
+    {
+        return self::where('id', '=', $blog_id)
+            ->where('customer_id', '=', $customer_id)
+            ->get();
+    }
+
     public function category()
     {
         return $this->belongsTo(BlogCategory::class, 'category_id', 'id');
