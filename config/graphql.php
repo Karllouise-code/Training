@@ -94,6 +94,7 @@ return [
 
             'mutation' => [
                 'savecategory' => App\GraphQL\Mutations\SaveCategoryMutation::class,
+                'saveblogs' => App\GraphQL\Mutations\BlogMutation::class,
             ],
 
             'types' => [],
@@ -118,6 +119,7 @@ return [
         'categoryType' => App\GraphQL\Types\CategoryType::class,
         'responseType' => App\GraphQL\Types\ResponseType::class,
         'blogType' => App\GraphQL\Types\BlogType::class,
+        'blogInput' => App\GraphQL\Inputs\BlogInput::class,
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request

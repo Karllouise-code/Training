@@ -42,9 +42,22 @@ let queries = {
             }
         }
     }`,
+
+    saveblogs: `mutation saveblogs($blog: blogInput) {
+        saveblogs(blogs: $blog) {
+            error,
+            message
+        }
+    }`,
 };
 
-let customerQueries = ['checkcustomer', 'category', 'savecategory', 'blogs'];
+let customerQueries = [
+    'checkcustomer',
+    'category',
+    'savecategory',
+    'blogs',
+    'saveblogs',
+];
 
 function getApiUrl(queryName) {
     let segment = '';

@@ -5514,9 +5514,9 @@ __webpack_require__.r(__webpack_exports__);
       this.$query("saveblogs", {
         blogs: {
           title: this.title,
-          category: this.selected_category,
+          category_id: this.selected_category,
           description: this.description,
-          id: 0
+          id: "0"
         }
       }).then(function (res) {
         _this2.isSaving = false;
@@ -6168,8 +6168,8 @@ var queries = (_queries = {
   category: "{category{id,name}}",
   checkcustomer: "query CheckCustomerQuery {\n        checkcustomer\n    }",
   savecategory: "mutation savecategory($name: String, $id: String) {\n        savecategory(name: $name, id: $id) {\n            error,\n            message\n        }\n    }"
-}, _defineProperty(_queries, "category", "query fetchSingleCategory($category_id: String, $delete_category_id: String) {\n        category(category_id: $category_id, delete_category_id: $delete_category_id) {\n            id,\n            name\n        }\n    }"), _defineProperty(_queries, "blogs", "query fetchSingleBlogs($blog_id: String, $delete_blog_id: String) {\n        blogs(blog_id: $blog_id, delete_blog_id: $delete_blog_id) {\n            id,\n            title,\n            description,\n            customer_id,\n            category_id,\n            category {\n                name\n            }\n        }\n    }"), _queries);
-var customerQueries = ['checkcustomer', 'category', 'savecategory', 'blogs'];
+}, _defineProperty(_queries, "category", "query fetchSingleCategory($category_id: String, $delete_category_id: String) {\n        category(category_id: $category_id, delete_category_id: $delete_category_id) {\n            id,\n            name\n        }\n    }"), _defineProperty(_queries, "blogs", "query fetchSingleBlogs($blog_id: String, $delete_blog_id: String) {\n        blogs(blog_id: $blog_id, delete_blog_id: $delete_blog_id) {\n            id,\n            title,\n            description,\n            customer_id,\n            category_id,\n            category {\n                name\n            }\n        }\n    }"), _defineProperty(_queries, "saveblogs", "mutation saveblogs($blog: blogInput) {\n        saveblogs(blogs: $blog) {\n            error,\n            message\n        }\n    }"), _queries);
+var customerQueries = ['checkcustomer', 'category', 'savecategory', 'blogs', 'saveblogs'];
 
 function getApiUrl(queryName) {
   var segment = '';
@@ -57828,6 +57828,7 @@ var render = function () {
                         expression: "selected_category",
                       },
                     ],
+                    staticClass: "form-control",
                     on: {
                       change: function ($event) {
                         var $$selectedVal = Array.prototype.filter

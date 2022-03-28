@@ -13,7 +13,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Category</label>
-                            <select v-model="selected_category">
+                            <select v-model="selected_category" class="form-control">
                                 <option value="">Select one</option>
                                 <option :value="category_data.id" v-for="category_data in category">
                                     {{ category_data.name }}
@@ -68,9 +68,9 @@ export default {
             this.$query("saveblogs", {
                 blogs: {
                     title: this.title,
-                    category: this.selected_category,
+                    category_id: this.selected_category,
                     description: this.description,
-                    id: 0,
+                    id: "0",
                 },
             }).then((res) => {
                 this.isSaving = false;

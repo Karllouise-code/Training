@@ -15,4 +15,17 @@ class Blog extends Eloquent
     {
         return $this->belongsTo(BlogCategory::class, 'id', 'category_id');
     }
+
+    public function SaveBlog($blog, $customer_id)
+    {
+        if ($blog['id'] == 0) {
+            $blogRec = new self();
+            $blogRec->category_id = $customer_id;
+        } else {
+            $blogRec = self::find($blog['id']);
+        }
+        $blogRec->title = $blog['title'];
+        $blogRec->description = $blog['description'];
+        $blogRec->save();
+    }
 }
