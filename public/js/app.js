@@ -6060,6 +6060,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       console.log(res);
       _this.loaded = false;
       _this.customer = res.data.data.customer;
+      _this.firstname = _this.customer.firstname;
+      _this.lastname = _this.customer.lastname;
+      _this.email = _this.customer.email;
     });
   }
 });

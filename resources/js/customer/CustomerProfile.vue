@@ -66,6 +66,9 @@ export default {
             console.log(res);
             this.loaded = false;
             this.customer = res.data.data.customer;
+            this.firstname = this.customer.firstname;
+            this.lastname = this.customer.lastname;
+            this.email = this.customer.email;
         });
     },
 };
