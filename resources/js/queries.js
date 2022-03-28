@@ -44,7 +44,7 @@ let queries = {
     }`,
 
     saveblogs: `mutation saveblogs($blog: blogInput) {
-        saveblogs(blogs: $blog) {
+        saveblogs(blog: $blog) {
             error,
             message
         }

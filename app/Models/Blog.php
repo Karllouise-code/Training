@@ -20,12 +20,13 @@ class Blog extends Eloquent
     {
         if ($blog['id'] == 0) {
             $blogRec = new self();
-            $blogRec->category_id = $customer_id;
+            $blogRec->customer_id = $customer_id;
         } else {
             $blogRec = self::find($blog['id']);
         }
         $blogRec->title = $blog['title'];
         $blogRec->description = $blog['description'];
+        $blogRec->category_id = $blog['category_id'];
         $blogRec->save();
     }
 }

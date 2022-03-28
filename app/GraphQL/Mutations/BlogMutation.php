@@ -4,11 +4,12 @@ namespace App\GraphQL\Mutations;
 
 use Log;
 use Str;
+use Hash;
 use Closure;
+use App\Models\Blog;
 use App\Models\Customer;
 use App\Models\BlogCategory;
 use GraphQL\Type\Definition\Type;
-use Hash;
 use Rebing\GraphQL\Support\Mutation;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 

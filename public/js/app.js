@@ -5512,27 +5512,28 @@ __webpack_require__.r(__webpack_exports__);
 
       this.isSaving = true;
       this.$query("saveblogs", {
-        blogs: {
+        blog: {
           title: this.title,
           category_id: this.selected_category,
           description: this.description,
           id: "0"
         }
       }).then(function (res) {
+        console.log(res);
         _this2.isSaving = false;
 
         if (res.data.errors) {
           var errors = Object.values(res.data.errors[0].extensions.validation).flat();
           var errors_keys = Object.keys(res.data.errors[0].extensions.validation).flat();
           _this2.title_error = errors_keys.some(function (q) {
-            return q === "blogs.title";
-          }) ? errors[errors_keys.indexOf("blogs.title")] : "";
+            return q === "blog.title";
+          }) ? errors[errors_keys.indexOf("blog.title")] : "";
           _this2.description_error = errors_keys.some(function (q) {
-            return q === "blogs.description";
-          }) ? errors[errors_keys.indexOf("blogs.description")] : "";
+            return q === "blog.description";
+          }) ? errors[errors_keys.indexOf("blog.description")] : "";
           _this2.category_error = errors_keys.some(function (q) {
-            return q === "blogs.category";
-          }) ? errors[errors_keys.indexOf("blogs.category")] : "";
+            return q === "blog.category";
+          }) ? errors[errors_keys.indexOf("blog.category")] : "";
         } else {
           var response = res.data.data.saveblogs;
 
@@ -6168,7 +6169,7 @@ var queries = (_queries = {
   category: "{category{id,name}}",
   checkcustomer: "query CheckCustomerQuery {\n        checkcustomer\n    }",
   savecategory: "mutation savecategory($name: String, $id: String) {\n        savecategory(name: $name, id: $id) {\n            error,\n            message\n        }\n    }"
-}, _defineProperty(_queries, "category", "query fetchSingleCategory($category_id: String, $delete_category_id: String) {\n        category(category_id: $category_id, delete_category_id: $delete_category_id) {\n            id,\n            name\n        }\n    }"), _defineProperty(_queries, "blogs", "query fetchSingleBlogs($blog_id: String, $delete_blog_id: String) {\n        blogs(blog_id: $blog_id, delete_blog_id: $delete_blog_id) {\n            id,\n            title,\n            description,\n            customer_id,\n            category_id,\n            category {\n                name\n            }\n        }\n    }"), _defineProperty(_queries, "saveblogs", "mutation saveblogs($blog: blogInput) {\n        saveblogs(blogs: $blog) {\n            error,\n            message\n        }\n    }"), _queries);
+}, _defineProperty(_queries, "category", "query fetchSingleCategory($category_id: String, $delete_category_id: String) {\n        category(category_id: $category_id, delete_category_id: $delete_category_id) {\n            id,\n            name\n        }\n    }"), _defineProperty(_queries, "blogs", "query fetchSingleBlogs($blog_id: String, $delete_blog_id: String) {\n        blogs(blog_id: $blog_id, delete_blog_id: $delete_blog_id) {\n            id,\n            title,\n            description,\n            customer_id,\n            category_id,\n            category {\n                name\n            }\n        }\n    }"), _defineProperty(_queries, "saveblogs", "mutation saveblogs($blog: blogInput) {\n        saveblogs(blog: $blog) {\n            error,\n            message\n        }\n    }"), _queries);
 var customerQueries = ['checkcustomer', 'category', 'savecategory', 'blogs', 'saveblogs'];
 
 function getApiUrl(queryName) {

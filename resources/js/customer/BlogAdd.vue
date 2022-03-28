@@ -66,26 +66,27 @@ export default {
         submitForm() {
             this.isSaving = true;
             this.$query("saveblogs", {
-                blogs: {
+                blog: {
                     title: this.title,
                     category_id: this.selected_category,
                     description: this.description,
                     id: "0",
                 },
             }).then((res) => {
+                console.log(res);
                 this.isSaving = false;
                 if (res.data.errors) {
                     let errors = Object.values(res.data.errors[0].extensions.validation).flat();
                     let errors_keys = Object.keys(res.data.errors[0].extensions.validation).flat();
 
-                    this.title_error = errors_keys.some((q) => q === "blogs.title")
-                        ? errors[errors_keys.indexOf("blogs.title")]
+                    this.title_error = errors_keys.some((q) => q === "blog.title")
+                        ? errors[errors_keys.indexOf("blog.title")]
                         : "";
-                    this.description_error = errors_keys.some((q) => q === "blogs.description")
-                        ? errors[errors_keys.indexOf("blogs.description")]
+                    this.description_error = errors_keys.some((q) => q === "blog.description")
+                        ? errors[errors_keys.indexOf("blog.description")]
                         : "";
-                    this.category_error = errors_keys.some((q) => q === "blogs.category")
-                        ? errors[errors_keys.indexOf("blogs.category")]
+                    this.category_error = errors_keys.some((q) => q === "blog.category")
+                        ? errors[errors_keys.indexOf("blog.category")]
                         : "";
                 } else {
                     let response = res.data.data.saveblogs;
