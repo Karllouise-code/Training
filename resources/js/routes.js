@@ -7,6 +7,7 @@ import BlogCategoryEdit from './customer/BlogCategoryEdit.vue';
 import Blogs from './customer/Blog.vue';
 import BlogsAdd from './customer/BlogAdd.vue';
 import BlogEdit from './customer/BlogEdit.vue';
+import CustomerProfile from './customer/CustomerProfile.vue';
 
 export default [
     { path: '/', component: Login, meta: { requiresAuth: false } },
@@ -19,4 +20,5 @@ export default [
     { path: '/customer/blogs', component: Blogs, name: 'blogs', meta: { isCustomer: true } },
     { path: '/customer/blogs/add', component: BlogsAdd, meta: { isCustomer: true } },
     { path: '/customer/blogs/edit/:id', component: BlogEdit, meta: { isCustomer: true } },
+    { path: '/customer/profile', component: CustomerProfile, meta: { isCustomer: true } },
 ];

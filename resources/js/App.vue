@@ -27,7 +27,7 @@
                             <router-link to="/customer/blogs" class="nav-link">Blogs</router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Profile</a>
+                            <router-link to="/customer/profile" class="nav-link">Profile</router-link>
                         </li>
                     </ul>
                 </div>
