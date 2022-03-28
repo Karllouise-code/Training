@@ -56,10 +56,20 @@ export default {
             category: [],
         };
     },
+
     created() {
         this.$query("category").then((res) => {
             this.loaded = false;
             this.category = res.data.data.category;
+        });
+
+        this.$query("blogs", {
+            blog_id: this.$route.params.id,
+        }).then((res) => {
+            console.log(res);
+            let blog_data = res.data.data.blogs[0];
+            this.title = blog_data.title;
+            this.description = blog_data.description;
         });
     },
     methods: {

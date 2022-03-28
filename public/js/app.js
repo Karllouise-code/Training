@@ -5926,6 +5926,14 @@ __webpack_require__.r(__webpack_exports__);
       _this.loaded = false;
       _this.category = res.data.data.category;
     });
+    this.$query("blogs", {
+      blog_id: this.$route.params.id
+    }).then(function (res) {
+      console.log(res);
+      var blog_data = res.data.data.blogs[0];
+      _this.title = blog_data.title;
+      _this.description = blog_data.description;
+    });
   },
   methods: {
     submitForm: function submitForm() {
