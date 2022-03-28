@@ -9,7 +9,7 @@
                 <span class="spinner-border text-warning mr-3"></span>Please wait... loading your information...
             </div>
 
-            <form @submit.prevent="submitForm" v-if="!loaded">
+            <form @submit.prevent="onSubmitForm" v-if="!loaded">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -73,6 +73,18 @@ export default {
     methods: {
         onFileChanged(event) {
             this.selectedFile = event.target.files[0];
+        },
+        onSubmitForm() {
+            this.$query("updateProfile", {
+                file: this.selectedFile,
+                customer: {
+                    firstname: this.firstname,
+                    lastname: this.lastname,
+                    email: this.email,
+                },
+            }).then((res) => {
+                console.log(res);
+            });
         },
     },
 };
