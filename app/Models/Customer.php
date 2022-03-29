@@ -65,6 +65,7 @@ class Customer extends Authenticatable
         $customerRec = self::find($customer_id);
         if ($customerRec) {
             $customerRec->image = $filename;
-                $customerRec->save();
+            $customerRec->save();
+        }
     }
 }
