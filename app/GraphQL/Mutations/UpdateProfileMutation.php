@@ -26,8 +26,30 @@ class UpdateProfileMutation extends Mutation
     public function args(): array
     {
         return [
+            'file' => ['type' => GraphQL::type('Upload')],
             'customer' => ['type' => GraphQL::type('customerInput')],
         ];
+    }
+
+    public function validationErrorMessages(array $args = []): array
+    {
+        return [
+            'customer.firstname.required' => 'Please enter your first name',
+            'customer.lastname.required' => 'Please enter your last name',
+            'customer.email.required' => 'Please select your email address ',
+            'customer.email.email' => 'Please enter your valid email address ',
+        ];
+    }
+
+    protected function rules(array $args = []): array
+    {
+        $rules = [];
+
+        $rules['customer.firstname'] = ['required'];
+        $rules['customer.lastname'] = ['required'];
+        $rules['customer.email'] = ['required', 'email'];
+
+        return $rules;
     }
 
     public function resolve($root, array $args)
@@ -35,6 +57,11 @@ class UpdateProfileMutation extends Mutation
         $customer = $args['customer'];
         $customer_model = new Customer();
         $customerRec = $customer_model->GetCustomerID();
+
+        $customer_model = $customer_model->UpdateProfile(
+            $customerRec->customer_id,
+            $customer
+        );
 
         return '';
     }

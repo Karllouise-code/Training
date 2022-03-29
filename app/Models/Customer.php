@@ -41,4 +41,20 @@ class Customer extends Authenticatable
             Request::bearerToken()
         )->first();
     }
+
+    public function UpdateProfile(
+        $customer_id,
+        $customer
+    ) {
+        $customerRec = self::find($customer_id);
+        if ($customerRec) {
+            $customerRec->firstname =
+                $customer['firstname'];
+            $customerRec->lastname =
+                $customer['lastname'];
+            $customerRec->email =
+                $customer['email'];
+            $customerRec->save();
+        }
+    }
 }
