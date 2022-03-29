@@ -13,7 +13,7 @@ class Helper extends Eloquent
         if ($file != '') {
             //public/uploads/customer/12 -> the path is something like this
             $destinationPath = 'uploads/' . $foldername . '/' . $id . '/';
-            $filename = str_slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)). '.' $file.getClientOriginalExtension();
+            $filename = str_slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)). '.' . $file.getClientOriginalExtension();
             $file->move($destinationPath, $filename);
 
             if(!File::exists($destinationPath.'thumb/') ){

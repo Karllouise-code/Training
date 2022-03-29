@@ -56,7 +56,6 @@ class UpdateProfileMutation extends Mutation
     public function resolve($root, array $args)
     {
         $customer = $args['customer'];
-        Log::debug(print_r($customer, true));
         $customer_model = new Customer();
         $customerRec = $customer_model->GetCustomerID();
 
