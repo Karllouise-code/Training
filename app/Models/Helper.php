@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Support\Str;
 use File;
 use Image;
 
@@ -14,8 +15,9 @@ class Helper extends Eloquent
             //public/uploads/customer/12 -> the path is something like this
             $destinationPath = 'uploads/' . $foldername . '/' . $id . '/';
             $filename =
-                str_slug(
-                    pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)
+                Str::slug(
+                    pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME),
+                    '-'
                 ) .
                 '.' .
                 $file .
