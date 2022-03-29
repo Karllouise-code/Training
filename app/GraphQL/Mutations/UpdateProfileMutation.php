@@ -59,18 +59,18 @@ class UpdateProfileMutation extends Mutation
         $customer_model = new Customer();
         $customerRec = $customer_model->GetCustomerID();
 
-        $customer_model->UpdateProfile($customerRec->customer_id, $customer);
+        $customer_model->UpdateProfile($customerRec->id, $customer);
 
         if ($args['file'] != null) {
             //upload image
             $helper_model = new Helper();
             $filename = $helper_model->ImageUpload(
                 $args['file'],
-                $customerRec->customer_id,
+                $customerRec->id,
                 'customer'
             );
             $customer_model = $customer_model->UpdateProfileImage(
-                $customerRec->customer_id,
+                $customerRec->id,
                 $filename
             );
         }

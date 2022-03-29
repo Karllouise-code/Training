@@ -14,4 +14,4 @@ yarn-error.log
 /.idea
 /.vscode
 .prettierrc.json
-/public/uploads/customer/**/*.jpg
+/public/uploads/customer/**/*
