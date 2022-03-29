@@ -20,8 +20,7 @@ class Helper extends Eloquent
                     '-'
                 ) .
                 '.' .
-                $file .
-                getClientOriginalExtension();
+                $file->getClientOriginalExtension();
             $file->move($destinationPath, $filename);
 
             if (!File::exists($destinationPath . 'thumb/')) {
