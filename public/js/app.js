@@ -6085,7 +6085,7 @@ __webpack_require__.r(__webpack_exports__);
           email: this.email
         }
       }).then(function (res) {
-        _this2.isSaving = false;
+        _this2.isSavingProfile = false;
 
         _this2.$swal("Success!", "Your profile was successfully updated!", "success");
       });

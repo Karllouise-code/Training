@@ -91,7 +91,7 @@ export default {
                     email: this.email,
                 },
             }).then((res) => {
-                this.isSaving = false;
+                this.isSavingProfile = false;
                 this.$swal("Success!", "Your profile was successfully updated!", "success");
             });
         },
