@@ -73,7 +73,6 @@ export default {
                     id: "0",
                 },
             }).then((res) => {
-                console.log(res);
                 this.isSaving = false;
                 if (res.data.errors) {
                     let errors = Object.values(res.data.errors[0].extensions.validation).flat();

@@ -62,7 +62,6 @@ export default {
     },
     created() {
         this.$query("customer").then((res) => {
-            console.log(res);
             this.loaded = false;
             this.customer = res.data.data.customer;
             this.firstname = this.customer.firstname;

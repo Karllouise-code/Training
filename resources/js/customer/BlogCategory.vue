@@ -56,7 +56,6 @@ export default {
     },
     created() {
         this.$query("category").then((res) => {
-            console.log(res);
             this.loaded = false;
             this.category = res.data.data.category;
         });
