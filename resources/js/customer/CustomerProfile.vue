@@ -9,6 +9,10 @@
                 <span class="spinner-border text-warning mr-3"></span>Please wait... loading your information...
             </div>
 
+            <div class="alert alert-warning" v-if="isSavingProfile">
+                <span class="spinner-border text-warning mr-3"></span>Please wait... saving your profile...
+            </div>
+
             <form @submit.prevent="onSubmitForm" v-if="!loaded">
                 <div class="row">
                     <div class="col-md-6">
@@ -61,6 +65,7 @@ export default {
             customer: [],
             selectedFile: null,
             loaded: true,
+            isSavingProfile: false,
         };
     },
     created() {
@@ -70,7 +75,6 @@ export default {
             this.firstname = this.customer.firstname;
             this.lastname = this.customer.lastname;
             this.email = this.customer.email;
-            console.log(this.customer);
         });
     },
     methods: {
@@ -78,6 +82,7 @@ export default {
             this.selectedFile = event.target.files[0];
         },
         onSubmitForm() {
+            this.isSavingProfile = true;
             this.$query("updateProfile", {
                 file: this.selectedFile,
                 customer: {
@@ -86,7 +91,8 @@ export default {
                     email: this.email,
                 },
             }).then((res) => {
-                console.log(res);
+                this.isSaving = false;
+                this.$swal("Success!", "Your profile was successfully updated!", "success");
             });
         },
     },

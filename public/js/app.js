@@ -6039,6 +6039,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -6050,7 +6054,8 @@ __webpack_require__.r(__webpack_exports__);
       email_error: "",
       customer: [],
       selectedFile: null,
-      loaded: true
+      loaded: true,
+      isSavingProfile: false
     };
   },
   created: function created() {
@@ -6062,7 +6067,6 @@ __webpack_require__.r(__webpack_exports__);
       _this.firstname = _this.customer.firstname;
       _this.lastname = _this.customer.lastname;
       _this.email = _this.customer.email;
-      console.log(_this.customer);
     });
   },
   methods: {
@@ -6070,6 +6074,9 @@ __webpack_require__.r(__webpack_exports__);
       this.selectedFile = event.target.files[0];
     },
     onSubmitForm: function onSubmitForm() {
+      var _this2 = this;
+
+      this.isSavingProfile = true;
       this.$query("updateProfile", {
         file: this.selectedFile,
         customer: {
@@ -6078,7 +6085,9 @@ __webpack_require__.r(__webpack_exports__);
           email: this.email
         }
       }).then(function (res) {
-        console.log(res);
+        _this2.isSaving = false;
+
+        _this2.$swal("Success!", "Your profile was successfully updated!", "success");
       });
     }
   }
@@ -56336,6 +56345,13 @@ var render = function () {
         ? _c("div", { staticClass: "alert alert-warning" }, [
             _c("span", { staticClass: "spinner-border text-warning mr-3" }),
             _vm._v("Please wait... loading your information...\n        "),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.isSavingProfile
+        ? _c("div", { staticClass: "alert alert-warning" }, [
+            _c("span", { staticClass: "spinner-border text-warning mr-3" }),
+            _vm._v("Please wait... saving your profile...\n        "),
           ])
         : _vm._e(),
       _vm._v(" "),
