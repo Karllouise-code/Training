@@ -56,13 +56,11 @@ class UpdateProfileMutation extends Mutation
     public function resolve($root, array $args)
     {
         $customer = $args['customer'];
+        Log::debug(print_r($customer, true));
         $customer_model = new Customer();
         $customerRec = $customer_model->GetCustomerID();
 
-        $customer_model = $customer_model->UpdateProfile(
-            $customerRec->customer_id,
-            $customer
-        );
+        $customer_model->UpdateProfile($customerRec->customer_id, $customer);
 
         if ($args['file'] != null) {
             //upload image
