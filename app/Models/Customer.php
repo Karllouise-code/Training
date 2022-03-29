@@ -57,4 +57,14 @@ class Customer extends Authenticatable
             $customerRec->save();
         }
     }
+
+    public function UpdateProfileImage(
+        $customer_id,
+        $filename
+    ) {
+        $customerRec = self::find($customer_id);
+        if ($customerRec) {
+            $customerRec->image = $filename;
+                $customerRec->save();
+    }
 }

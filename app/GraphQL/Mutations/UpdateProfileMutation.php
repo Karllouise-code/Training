@@ -5,6 +5,7 @@ namespace App\GraphQL\Mutations;
 use Log;
 use Hash;
 use Closure;
+use App\Models\Helper;
 use App\Models\Customer;
 use Illuminate\Support\Str;
 use GraphQL\Type\Definition\Type;
@@ -62,6 +63,20 @@ class UpdateProfileMutation extends Mutation
             $customerRec->customer_id,
             $customer
         );
+
+        if ($args['file'] != null) {
+            //upload image
+            $helper_model = new Helper();
+            $filename = $helper_model->ImageUpload(
+                $args['file'],
+                $customerRec->customer_id,
+                'customer'
+            );
+            $customer_model = $customer_model->UpdateProfileImage(
+                $customerRec->customer_id,
+                $filename
+            );
+        }
 
         return '';
     }
