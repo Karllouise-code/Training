@@ -33,6 +33,9 @@
                         <div class="form-group">
                             <label>Image</label>
                             <input type="file" class="form-control" @change="onFileChanged" />
+                            <div v-if="customer.image !== ''">
+                                <img :src="`uploads/customer/${customer.id}/thumb/${customer.image}`" class="" />
+                            </div>
                         </div>
 
                         <div class="mb-3">
@@ -67,6 +70,7 @@ export default {
             this.firstname = this.customer.firstname;
             this.lastname = this.customer.lastname;
             this.email = this.customer.email;
+            console.log(this.customer);
         });
     },
     methods: {

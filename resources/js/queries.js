@@ -50,7 +50,7 @@ let queries = {
         }
     }`,
 
-    customer: `{customer{firstname,lastname, email}}`,
+    customer: `{customer{firstname,lastname, email, image}}`,
 
     updateProfile: `mutation updateProfile($file: Upload!, $customer: customerInput) {
         updateProfile(file: $file, customer: $customer)

@@ -17,6 +17,9 @@ class CustomerType extends GraphQLType
     public function fields(): array
     {
         return [
+            'id' => [
+                'type' => Type::string(),
+            ],
             'firstname' => [
                 'type' => Type::string(),
             ],
@@ -24,6 +27,9 @@ class CustomerType extends GraphQLType
                 'type' => Type::string(),
             ],
             'email' => [
+                'type' => Type::string(),
+            ],
+            'image' => [
                 'type' => Type::string(),
             ],
         ];

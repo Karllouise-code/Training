@@ -5397,7 +5397,6 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.$query("blogs").then(function (res) {
-      console.log(res);
       _this.loaded = false;
       _this.blogs = res.data.data.blogs;
     });
@@ -5519,7 +5518,6 @@ __webpack_require__.r(__webpack_exports__);
           id: "0"
         }
       }).then(function (res) {
-        console.log(res);
         _this2.isSaving = false;
 
         if (res.data.errors) {
@@ -5632,7 +5630,6 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.$query("category").then(function (res) {
-      console.log(res);
       _this.loaded = false;
       _this.category = res.data.data.category;
     });
@@ -5930,7 +5927,6 @@ __webpack_require__.r(__webpack_exports__);
     this.$query("blogs", {
       blog_id: this.$route.params.id
     }).then(function (res) {
-      console.log(res);
       var blog_data = res.data.data.blogs[0];
       _this.title = blog_data.title;
       _this.description = blog_data.description;
@@ -6040,6 +6036,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -6058,12 +6057,12 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.$query("customer").then(function (res) {
-      console.log(res);
       _this.loaded = false;
       _this.customer = res.data.data.customer;
       _this.firstname = _this.customer.firstname;
       _this.lastname = _this.customer.lastname;
       _this.email = _this.customer.email;
+      console.log(_this.customer);
     });
   },
   methods: {
@@ -6411,7 +6410,7 @@ var queries = (_queries = {
   category: "{category{id,name}}",
   checkcustomer: "query CheckCustomerQuery {\n        checkcustomer\n    }",
   savecategory: "mutation savecategory($name: String, $id: String) {\n        savecategory(name: $name, id: $id) {\n            error,\n            message\n        }\n    }"
-}, _defineProperty(_queries, "category", "query fetchSingleCategory($category_id: String, $delete_category_id: String) {\n        category(category_id: $category_id, delete_category_id: $delete_category_id) {\n            id,\n            name\n        }\n    }"), _defineProperty(_queries, "blogs", "query fetchSingleBlogs($blog_id: String, $delete_blog_id: String) {\n        blogs(blog_id: $blog_id, delete_blog_id: $delete_blog_id) {\n            id,\n            title,\n            description,\n            customer_id,\n            category_id,\n            category {\n                name\n            }\n        }\n    }"), _defineProperty(_queries, "saveblogs", "mutation saveblogs($blog: blogInput) {\n        saveblogs(blog: $blog) {\n            error,\n            message\n        }\n    }"), _defineProperty(_queries, "customer", "{customer{firstname,lastname, email}}"), _defineProperty(_queries, "updateProfile", "mutation updateProfile($file: Upload!, $customer: customerInput) {\n        updateProfile(file: $file, customer: $customer)\n    }"), _queries);
+}, _defineProperty(_queries, "category", "query fetchSingleCategory($category_id: String, $delete_category_id: String) {\n        category(category_id: $category_id, delete_category_id: $delete_category_id) {\n            id,\n            name\n        }\n    }"), _defineProperty(_queries, "blogs", "query fetchSingleBlogs($blog_id: String, $delete_blog_id: String) {\n        blogs(blog_id: $blog_id, delete_blog_id: $delete_blog_id) {\n            id,\n            title,\n            description,\n            customer_id,\n            category_id,\n            category {\n                name\n            }\n        }\n    }"), _defineProperty(_queries, "saveblogs", "mutation saveblogs($blog: blogInput) {\n        saveblogs(blog: $blog) {\n            error,\n            message\n        }\n    }"), _defineProperty(_queries, "customer", "{customer{firstname,lastname, email, image}}"), _defineProperty(_queries, "updateProfile", "mutation updateProfile($file: Upload!, $customer: customerInput) {\n        updateProfile(file: $file, customer: $customer)\n    }"), _queries);
 var customerQueries = ['checkcustomer', 'category', 'savecategory', 'blogs', 'saveblogs', 'customer', 'updateProfile'];
 var uploadQueries = ['updateProfile'];
 
@@ -56452,6 +56451,20 @@ var render = function () {
                       attrs: { type: "file" },
                       on: { change: _vm.onFileChanged },
                     }),
+                    _vm._v(" "),
+                    _vm.customer.image !== ""
+                      ? _c("div", [
+                          _c("img", {
+                            attrs: {
+                              src:
+                                "uploads/customer/" +
+                                _vm.customer.id +
+                                "/thumb/" +
+                                _vm.customer.image,
+                            },
+                          }),
+                        ])
+                      : _vm._e(),
                   ]),
                   _vm._v(" "),
                   _vm._m(1),
