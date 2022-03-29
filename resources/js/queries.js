@@ -52,7 +52,7 @@ let queries = {
 
     customer: `{customer{firstname,lastname, email}}`,
 
-    updateProfile: `mutation updateProfile($file: upload, $customer: customerInput) {
+    updateProfile: `mutation updateProfile($file: Upload!, $customer: customerInput) {
         updateProfile(file: $file, customer: $customer)
     }`,
 };
@@ -80,7 +80,7 @@ function getApiUrl(queryName) {
 Vue.prototype.$query = function (queryName, queryVariables) {
     var token = '';
     if (customerQueries.some((q) => q === queryName)) {
-        token = sessionStorage.getItem('api_token');
+        token = sessionStorage.getItem('api-token');
     }
 
     if (uploadQueries.some((q) => q === queryName)) {

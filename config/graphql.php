@@ -119,7 +119,7 @@ return [
     // ]
     //
     'types' => [
-        'upload' => UploadType::class,
+        'Upload' => UploadType::class,
         'customerInput' => App\GraphQL\Inputs\CustomerInput::class,
         'categoryType' => App\GraphQL\Types\CategoryType::class,
         'responseType' => App\GraphQL\Types\ResponseType::class,

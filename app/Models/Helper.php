@@ -1,21 +1,19 @@
 <?php
 
 namespace App\Models;
-
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
-use Intervention\Image\Facades\Image;
 use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Support\Str;
+use File;
+use Image;
 
 class Helper extends Eloquent
 {
     public function ImageUpload($file, $id, $foldername)
     {
         if ($file != '') {
-            //public/uploads/customer/12 -> the path is something like this
             $destinationPath = 'uploads/' . $foldername . '/' . $id . '/';
-            $filename = Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME), '-') . '.' . $file->getClientOriginalExtension();
-            $file->move($destinationPath, $filename);
+            $fileName = Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME), '-') . '.' . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $fileName);
 
             if (!File::exists($destinationPath . 'thumb/')) {
                 File::makeDirectory($destinationPath . 'large/', 0775);
@@ -23,30 +21,32 @@ class Helper extends Eloquent
                 File::makeDirectory($destinationPath . 'small/', 0775);
                 File::makeDirectory($destinationPath . 'thumb/', 0775);
             }
-
-            //large image
-            $img = Image::make($destinationPath . $filename)->resize('1200', null, function ($constraint) {
+            // for large images
+            $img = Image::make($destinationPath . $fileName)->resize(1200, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $img->save($destinationPath . 'large/' . $filename, 90);
-            //medium image
-            $img = Image::make($destinationPath . $filename)->resize(600, null, function ($constraint) {
+            $img->save($destinationPath . 'large/' . $fileName, 90);
+            // for medium images
+            $img = Image::make($destinationPath . $fileName)->resize(600, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $img->save($destinationPath . 'medium/' . $filename, 90);
-            //small image
-            $img = Image::make($destinationPath . $filename)->resize(300, null, function ($constraint) {
+            $img->save($destinationPath . 'medium/' . $fileName, 90);
+            // for small images
+            $img = Image::make($destinationPath . $fileName)->resize(300, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $img->save($destinationPath . 'small/' . $filename, 90);
-            //thumb image
-            $img = Image::make($destinationPath . $filename)->resize(75, null, function ($constraint) {
+            $img->save($destinationPath . 'small/' . $fileName, 90);
+            // for thumbnail images
+            $img = Image::make($destinationPath . $fileName)->resize(75, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $img->save($destinationPath . 'thumb/' . $filename, 90);
+            $img->save($destinationPath . 'thumb/' . $fileName, 90);
         } else {
-            $filename = '';
-            return $filename;
+            $fileName = '';
         }
+
+        return $fileName;
     }
 }
+
+?>

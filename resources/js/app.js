@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import AxiosPlugin from 'vue-axios-cors';
+// import AxiosPlugin from 'vue-axios-cors';
 import VueMeta from 'vue-meta';
 import VueSweetalert2 from 'vue-sweetalert2';
 import moment from 'moment';
@@ -12,7 +12,7 @@ import swal from 'sweetalert2';
 require('./bootstrap');
 
 Vue.use(VueRouter);
-Vue.use(AxiosPlugin);
+// Vue.use(AxiosPlugin);
 Vue.use(VueMeta);
 Vue.use(VueSweetalert2);
 import 'sweetalert2/dist/sweetalert2.min.css';
