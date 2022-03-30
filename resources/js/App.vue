@@ -2,7 +2,7 @@
     <div>
         <div v-if="loggedIn">
             <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-                <a class="navbar-brand" href="#">One Blog</a>
+                <router-link class="navbar-brand" to="/">One Blog</router-link>
                 <button
                     class="navbar-toggler"
                     type="button"

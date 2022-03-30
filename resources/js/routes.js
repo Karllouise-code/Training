@@ -8,9 +8,11 @@ import Blogs from './customer/Blog.vue';
 import BlogsAdd from './customer/BlogAdd.vue';
 import BlogEdit from './customer/BlogEdit.vue';
 import CustomerProfile from './customer/CustomerProfile.vue';
+import Home from './front/Home.vue';
 
 export default [
-    { path: '/', component: Login, meta: { requiresAuth: false } },
+    { path: '/', component: Home, meta: { requiresAuth: false } },
+    { path: '/Login', component: Login, meta: { requiresAuth: false } },
     { path: '/registration', component: Registration, meta: { requiresAuth: false } },
     { path: '/customer/dashboard', component: Dashboard, meta: { isCustomer: true } },
     { path: '/customer', component: Dashboard, meta: { isCustomer: true } },
