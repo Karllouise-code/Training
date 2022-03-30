@@ -6059,22 +6059,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    var _this = this;
-
-    this.$query("customer").then(function (res) {
-      _this.loaded = false;
-      _this.customer = res.data.data.customer;
-      _this.firstname = _this.customer.firstname;
-      _this.lastname = _this.customer.lastname;
-      _this.email = _this.customer.email;
-    });
+    this.onPopulateData();
   },
   methods: {
     onFileChanged: function onFileChanged(event) {
       this.selectedFile = event.target.files[0];
     },
     onSubmitForm: function onSubmitForm() {
-      var _this2 = this;
+      var _this = this;
 
       this.isSavingProfile = true;
       this.$query("updateProfile", {
@@ -6085,9 +6077,22 @@ __webpack_require__.r(__webpack_exports__);
           email: this.email
         }
       }).then(function (res) {
-        _this2.isSavingProfile = false;
+        _this.onPopulateData();
 
-        _this2.$swal("Success!", "Your profile was successfully updated!", "success");
+        _this.isSavingProfile = false;
+
+        _this.$swal("Success!", "Your profile was successfully updated!", "success");
+      });
+    },
+    onPopulateData: function onPopulateData() {
+      var _this2 = this;
+
+      this.$query("customer").then(function (res) {
+        _this2.loaded = false;
+        _this2.customer = res.data.data.customer;
+        _this2.firstname = _this2.customer.firstname;
+        _this2.lastname = _this2.customer.lastname;
+        _this2.email = _this2.customer.email;
       });
     }
   }

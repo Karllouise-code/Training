@@ -69,13 +69,7 @@ export default {
         };
     },
     created() {
-        this.$query("customer").then((res) => {
-            this.loaded = false;
-            this.customer = res.data.data.customer;
-            this.firstname = this.customer.firstname;
-            this.lastname = this.customer.lastname;
-            this.email = this.customer.email;
-        });
+        this.onPopulateData();
     },
     methods: {
         onFileChanged(event) {
@@ -91,8 +85,18 @@ export default {
                     email: this.email,
                 },
             }).then((res) => {
+                this.onPopulateData();
                 this.isSavingProfile = false;
                 this.$swal("Success!", "Your profile was successfully updated!", "success");
+            });
+        },
+        onPopulateData() {
+            this.$query("customer").then((res) => {
+                this.loaded = false;
+                this.customer = res.data.data.customer;
+                this.firstname = this.customer.firstname;
+                this.lastname = this.customer.lastname;
+                this.email = this.customer.email;
             });
         },
     },
